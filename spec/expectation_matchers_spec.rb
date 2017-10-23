@@ -87,7 +87,7 @@ describe 'Expectation Matchers' do
       expect(10).to be_between(5, 10).inclusive
       expect(10).not_to be_between(5, 10).exclusive
       expect(12).to be_within(1).of(11) # range of 11-1 to 11+1
-      expect(5..10).to cover(9)
+      expect(5..10).to cover(9) # you can test more than one value using cover(9,6,8) and so on.
     end
 
   end
@@ -160,7 +160,7 @@ describe 'Expectation Matchers' do
 
     it 'will match objects with #respond_to' do
       string = 'test'
-      expect(string).to respond_to(:length)
+      expect(string).to respond_to(:length) #check if there is a (length) function inside (string)
       expect(string).not_to respond_to(:sort)
     end
 
@@ -320,21 +320,6 @@ describe 'Expectation Matchers' do
 
   end
 
-  describe 'compound expectations' do
-
-    it 'will match using: and, or, &, |' do
-      expect([1,2,3,4]).to start_with(1).and end_with(4)
-
-      expect([1,2,3,4]).to start_with(1) & include(2)
-
-      expect(10 * 10).to be_odd.or be > 50
-
-      array = ['hello', 'goodbye'].shuffle
-      expect(array.first).to eq("hello") | eq("goodbye")
-    end
-
-  end
-
   describe 'composing matchers' do
     # some matchers accept matchers as arguments. (new in rspec3)
 
@@ -387,5 +372,4 @@ describe 'Expectation Matchers' do
         end_with( a_value_within(1).of(5) )
     end
   end
-
 end
